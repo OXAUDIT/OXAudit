@@ -1,114 +1,116 @@
-OXAUDIT: Smart Contract Static Analysis Tool
+OXAUDIT, the Smart Contract Static Analyzer
+OXAUDIT is a Solidity static analysis tool written in Python. It offers a suite of vulnerability detectors, provides insightful contract details, and includes an API to develop custom analyses. OXAUDIT helps developers identify vulnerabilities, understand their code better, and quickly prototype custom analyses.
 
-OXAUDIT is an advanced static analysis tool tailored for Solidity smart contracts, designed to enhance the security and efficiency of Ethereum-based applications. Built with a focus on precision, speed, and ease of integration, OXAUDIT enables developers to proactively identify and address vulnerabilities, improve code clarity, and optimize performance. Leveraging its modular architecture, OXAUDIT integrates seamlessly into CI/CD pipelines and provides flexible options for detecting a wide array of common smart contract security issues.
+Features
+Detects common vulnerabilities in Solidity code with low false positives.
+Pinpoints exact locations of issues in the source code.
+Easily integrates into continuous integration pipelines.
+Provides comprehensive contract information through built-in printers.
+Customizable API for developing new detectors and analyses in Python.
+Supports Solidity versions >= 0.4.
+Parses nearly all public Solidity code accurately.
+Executes analyses in under a second per contract.
+Integration with GitHub's code scanning.
+Usage
+To run OXAUDIT on a project:
 
-Here's a proposed section for your whitepaper, covering **OXAUDIT** and detailing how it works, including instructions on usage and features.
+bash
+Copy code
+oxaudit .
+For single files without dependencies:
 
----
+bash
+Copy code
+oxaudit path/to/your/contract.sol
+Installation
+Using Pip
+bash
+Copy code
+python3 -m pip install oxaudit
+Using Git
+bash
+Copy code
+git clone https://github.com/your-repo/oxaudit.git && cd oxaudit
+python3 -m pip install .
+Using Docker
+To use OXAUDIT with Docker:
 
+bash
+Copy code
+docker pull your-repo/oxaudit
+docker run -it -v /home/share:/share your-repo/oxaudit
+Integration
+For GitHub Actions integration:
 
-#### How OXAUDIT Works
-
-OXAUDIT operates by statically analyzing Solidity code, identifying potential vulnerabilities through a comprehensive set of built-in detectors. It examines contracts at a syntactic and semantic level to identify coding patterns that may pose risks, such as unprotected functions, reentrancy vulnerabilities, or costly operations within loops. The tool’s analysis engine generates an intermediate representation of the code to facilitate detailed, high-precision assessments without executing the code itself.
-
-This static analysis approach is particularly effective for blockchain security as it can identify vulnerabilities early in the development process. By scanning for known issues and highlighting risky patterns, OXAUDIT helps developers ensure the robustness of their smart contracts before deployment.
-
-#### Key Features of OXAUDIT
-
-- **Low False Positives**: OXAUDIT’s detectors are fine-tuned to reduce false positives, offering developers actionable insights with minimal noise.
-- **Broad Detector Set**: OXAUDIT comes with over 15 pre-configured detectors that target common vulnerabilities like uninitialized storage variables, integer overflows, and unauthorized self-destruct calls.
-- **Continuous Integration Compatibility**: Integrates smoothly with GitHub Actions and other CI/CD platforms, enabling automated analysis with each code update.
-- **Customizable API**: Supports the development of custom detectors in Python, allowing organizations to adapt OXAUDIT to their specific security requirements.
-- **Intermediate Representation (IR)**: Uses an IR layer to perform precise analyses and generate call graphs, control flow graphs, and other contract summaries for comprehensive security reviews.
-
-#### Guide to Using OXAUDIT
-
-Below is a step-by-step guide for installing, configuring, and running OXAUDIT in a development environment.
-
-##### Installation
-
-OXAUDIT can be installed via several methods, depending on your project’s requirements.
-
-1. **Using Pip**:
-   ```bash
-   python3 -m pip install oxaudit
-   ```
-
-2. **Using Git**:
-   ```bash
-   git clone https://github.com/your-repo/oxaudit.git && cd oxaudit
-   python3 -m pip install .
-   ```
-
-3. **Using Docker**:
-   Pull the Docker image for OXAUDIT and mount the necessary directories:
-   ```bash
-   docker pull your-repo/oxaudit
-   docker run -it -v /home/share:/share your-repo/oxaudit
-   ```
-
-##### Basic Usage
-
-OXAUDIT can analyze individual Solidity files or entire projects. The following commands illustrate how to perform an analysis:
-
-1. **Analyzing an Entire Project**:
-   In the root directory of your Solidity project, run:
-   ```bash
-   oxaudit .
-   ```
-   This command will analyze all Solidity files in the project and produce a summary report of detected vulnerabilities.
-
-2. **Analyzing a Single File**:
-   For specific files without dependencies, specify the file path directly:
-   ```bash
-   oxaudit path/to/your/contract.sol
-   ```
-
-##### Integration with Continuous Integration (CI)
-
-OXAUDIT supports CI integration to automate security checks for each commit. To configure OXAUDIT in GitHub Actions, add the following steps in your GitHub Actions workflow:
-
-```yaml
+yaml
+Copy code
 - name: Run OXAUDIT
   uses: your-repo/oxaudit-action@main
-```
+To generate a Markdown report:
 
-##### Generating Reports
-
-OXAUDIT provides detailed reports in various formats. For instance, to generate a Markdown report, use:
-
-```bash
+bash
+Copy code
 oxaudit [target] --report markdown
-```
+Detectors
+OXAUDIT includes a comprehensive set of detectors for common vulnerabilities, including:
 
-This command will output a comprehensive report, with each identified issue listed alongside its impact and suggested fixes.
+#	Detector	Description	Impact	Confidence
+1	uninitialized-storage	Detects uninitialized storage usage	High	High
+2	reentrancy	Detects reentrancy vulnerabilities	High	High
+3	unprotected-functions	Identifies unprotected functions	Medium	Medium
+4	low-level-calls	Flags low-level calls usage	Low	Medium
+5	integer-overflow	Detects potential integer overflows	High	High
+6	missing-zero-check	Identifies missing zero address validation	Medium	High
+7	arbitrary-send	Flags functions that send Ether to arbitrary destinations	High	Medium
+8	shadowed-state-variables	Detects state variables shadowing	Medium	High
+9	timestamp-dependence	Flags risky block.timestamp usage	Medium	Medium
+10	tx-origin-auth	Detects risky tx.origin-based authentication	High	Medium
+11	costly-loop	Flags loops with costly operations	Medium	Medium
+12	assert-state-change	Detects assert statements causing state changes	Low	High
+13	unchecked-send	Identifies unchecked sends	High	Medium
+14	unauthorized-selfdestruct	Detects potential unauthorized selfdestruct calls	High	High
+15	floating-pragmas	Detects floating pragmas for Solidity versions	Low	High
+16	unused-state	Flags unused state variables	Low	Medium
+17	redundant-statements	Detects redundant or unreachable code	Low	High
+18	unsafe-delegatecall	Flags unsafe delegatecalls	High	High
+For a full list of detectors, please see the Detectors Documentation.
 
-#### Understanding OXAUDIT Detectors
+Printers
+OXAUDIT offers several printers for quick and in-depth reviews.
 
-OXAUDIT includes a broad set of detectors designed to capture a wide range of security vulnerabilities. Below are some examples:
+Quick Review Printers
+human-summary: Prints a human-readable contract summary.
+loc: Counts lines of code (LOC), source lines of code (SLOC), and comments.
+In-Depth Review Printers
+call-graph: Exports the call graph of the contract.
+cfg: Exports the Control Flow Graph (CFG).
+To run a printer:
 
-| Detector                  | Description                                              | Impact  | Confidence |
-|---------------------------|----------------------------------------------------------|---------|------------|
-| uninitialized-storage     | Detects uninitialized storage usage                      | High    | High       |
-| reentrancy                | Detects reentrancy vulnerabilities                       | High    | High       |
-| unprotected-functions     | Identifies unprotected functions                         | Medium  | Medium     |
-| integer-overflow          | Detects potential integer overflows                      | High    | High       |
-| missing-zero-check        | Identifies missing zero address validation               | Medium  | High       |
-| tx-origin-auth            | Detects risky tx.origin-based authentication             | High    | Medium     |
+bash
+Copy code
+oxaudit --print [printer-name]
+Tools
+OXAUDIT includes several auxiliary tools:
 
-For a comprehensive list of detectors, see the full OXAUDIT documentation.
+oxaudit-check-upgradeability: Review upgradeable contract safety.
+oxaudit-read-storage: Reads storage values from contracts.
+oxaudit-interface: Generates an interface for a contract.
+For more details, check the Tool Documentation.
 
-#### Advanced Analysis Tools
+Getting Help
+For questions and support, visit our OXAUDIT Slack channel.
 
-OXAUDIT also includes several auxiliary tools to assist developers in performing in-depth analyses:
+Detector Documentation: How to write new analyses.
+Printer Documentation: Available printers and their usage.
+API Documentation: Methods and objects for custom analyses.
+Intermediate Representation (IR) Documentation: The IR used in OXAUDIT.
+FAQ
+How do I exclude certain files?
+Use --exclude to ignore specific files or directories.
 
-- **oxaudit-check-upgradeability**: Assesses safety for upgradeable contracts.
-- **oxaudit-read-storage**: Reads storage values from smart contracts.
-- **oxaudit-interface**: Generates interface files for contracts.
+Troubleshooting compilation issues?
+If compilation fails, ensure all dependencies are available. Try oxaudit . from the main project directory.
 
-To use these tools, simply run the corresponding command, such as:
-
-```bash
-oxaudit-check-upgradeability path/to/your/contract.sol
-```
+License
+OXAUDIT is licensed under the MIT License.
 
