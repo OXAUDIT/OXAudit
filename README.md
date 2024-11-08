@@ -1,8 +1,5 @@
-Here's the updated README with additional detectors listed for **OXAUDIT**:
+<h1 style="color:#00f58d;">OXAUDIT, the Smart Contract Static Analyzer</h1>
 
----
-
-# OXAUDIT, the Smart Contract Static Analyzer
 
 **OXAUDIT** is a Solidity static analysis tool written in Python. It offers a suite of vulnerability detectors, provides insightful contract details, and includes an API to develop custom analyses. OXAUDIT helps developers identify vulnerabilities, understand their code better, and quickly prototype custom analyses.
 
@@ -43,7 +40,7 @@ python3 -m pip install oxaudit
 ### Using Git
 
 ```bash
-git clone https://github.com/your-repo/oxaudit.git && cd oxaudit
+git clone https://github.com/oxaudit/oxaudit.git && cd oxaudit
 python3 -m pip install .
 ```
 
@@ -52,8 +49,8 @@ python3 -m pip install .
 To use **OXAUDIT** with Docker:
 
 ```bash
-docker pull your-repo/oxaudit
-docker run -it -v /home/share:/share your-repo/oxaudit
+docker pull oxaudit/oxaudit
+docker run -it -v /home/share:/share oxaudit/oxaudit
 ```
 
 ## Integration
@@ -62,7 +59,7 @@ For GitHub Actions integration:
 
 ```yaml
 - name: Run OXAUDIT
-  uses: your-repo/oxaudit-action@main
+  uses: oxaudit/oxaudit-action@main
 ```
 
 To generate a Markdown report:
@@ -149,6 +146,6 @@ If compilation fails, ensure all dependencies are available. Try `oxaudit .` fro
 
 OXAUDIT is licensed under the MIT License.
 
---- 
+---
 
-This README should give a comprehensive overview for users setting up and using OXAUDIT. Let me know if you'd like further refinements!
+This README now references your **oxaudit** repository. Let me know if you need further updates!
