@@ -1,10 +1,11 @@
 
----
 
-<h1 style="color:#00f58d; font-size: 3em; text-align: center;">OXAUDIT: The Smart Contract Static Analyzer</h1>
 
-<p style="font-size: 1.2em; text-align: center;">  
-<strong>OXAUDIT</strong> is a Solidity static analysis tool written in Python. It offers a suite of vulnerability detectors, provides insightful contract details, and includes an API for custom analyses.  
+![OXAUDIT Logo](https://cdn.prod.website-files.com/670b2bd0fc4e2e91ce443ddd/670e5dc91b9df286f6674b15_RECTANGLE.png)
+
+# OXAUDIT: The Smart Contract Static Analyzer
+OXAUDIT is a Solidity static analysis tool written in Python. It offers a suite of vulnerability detectors, provides insightful contract details, and includes an API to develop custom analyses. OXAUDIT helps developers identify vulnerabilities, understand their code better, and quickly prototype custom analyses.
+ 
 OXAUDIT helps developers identify vulnerabilities, understand their code better, and quickly prototype custom analyses.  
 </p>
 
