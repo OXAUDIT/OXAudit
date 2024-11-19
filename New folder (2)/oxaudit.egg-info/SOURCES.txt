@@ -1,5 +1,0 @@
-setup.py
-oxaudit.egg-info/PKG-INFO
-oxaudit.egg-info/SOURCES.txt
-oxaudit.egg-info/dependency_links.txt
-oxaudit.egg-info/top_level.txt
