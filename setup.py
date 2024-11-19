@@ -13,9 +13,9 @@ setup(
         ],
     },
     description="A Python package to scan Solidity contracts using Oxaudit",
-    author="Your Name",
-    author_email="your.email@example.com",
-    url="https://github.com/yourusername/oxaudit",  # Replace with your actual repo
+    author="OXAUDIT",
+    author_email="oxaudit.eth@example.com",
+    url="https://github.com/OXAUDIT/OXAudit/tree/main",  # Replace with your actual repo
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
